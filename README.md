@@ -11,7 +11,7 @@ For this occasion, the tests are carried out on the Login flow of "Swag Labs" we
 npm install
 
 ### Run Test:
-npm run wdio
+npx wdio run ./wdio.conf.js
 
 ## Author:
 Julieta Lara Balcaza

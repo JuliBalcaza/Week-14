@@ -1,15 +1,14 @@
-import LoginPage from  '../pageobjects/login.page';
-import SecurePage from '../pageobjects/secure.page';
+import LoginPage from  '../pageobjects/login.page.js';
 
 describe('My Login application', () => {
-    it('should login with valid credentials', async () => {
-        await LoginPage.open();
-
-        await LoginPage.login('tomsmith', 'SuperSecretPassword!');
-        await expect(SecurePage.flashAlert).toBeExisting();
-        await expect(SecurePage.flashAlert).toHaveTextContaining(
-            'You logged into a secure area!');
+    beforeAll('Navigate to url', () => {
+        browser.url('https://www.saucedemo.com/');
+    })
+    it('should not login with empty inputs', async () => {
+        await LoginPage.inputUsername.setValue('')
+        await LoginPage.inputPassword.setValue('')
+        await LoginPage.btnLogin.click();
+        await expect(LoginPage.errorMessage).toHaveText('Epic sadface: Username is required')
+        //await LoginPage.login('', '');
     });
 });
-
-
